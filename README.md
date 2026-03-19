@@ -108,7 +108,7 @@ brewery-case/
 ├── Dockerfile
 ├── docker-compose.yml
 └── requirements.txt
-
+```
 
 ## Orquestração
 
@@ -223,16 +223,15 @@ Se esta solução fosse reforçada ainda mais, eu adicionaria:
 
 ## Testes Automatizados
 
-O projeto pode incluir uma suíte enxuta de testes automatizados com `pytest` para validar os principais comportamentos do pipeline:
+O projeto inclui testes automatizados implementados com `pytest` para validar regras-chave de negócio e de qualidade dos dados:
 
-- paginação da API na Bronze
-- validação de Bronze não vazia
-- transformações e deduplicação na Silver
-- validação de Silver sem duplicidade
-- agregação correta na Gold
-- validação de `brewery_count > 0`
+- Validação da Bronze: garante que os registros extraídos não estejam vazios
 
-Os testes foram desenhados para rodar localmente utilizando uma `SparkSession` de teste e mocks da API.
+- Validação da Silver: garante a remoção de duplicidades e que a saída não esteja vazia
+
+- Validação da Gold: garante a agregação correta e que brewery_count seja positivo
+
+Esses testes se concentram na lógica central dos dados do pipeline e ajudam a verificar a consistência das camadas da Arquitetura Medalhão.
 
 ---
 
@@ -248,6 +247,7 @@ A evolução em nuvem mais simples para este projeto é a **Google Cloud Platfor
 ### Arquitetura-alvo recomendada
 ```text
 API -> GCS Bronze -> GCS Silver -> GCS Gold -> BigQuery
+```
 
 ### Por que o GCP é uma boa escolha
 - O GCS se encaixa naturalmente no layout atual de `data/bronze`, `data/silver` e `data/gold`
@@ -268,6 +268,7 @@ Quando a Gold estiver pronta, uma tarefa extra pode publicá-la no BigQuery:
 
 ```text
 extract_bronze -> transform_silver -> aggregate_gold -> load_gold_to_bigquery
+```
 
 Caminhos equivalentes no GCP:
 - `gs://<bucket>/bronze/...`

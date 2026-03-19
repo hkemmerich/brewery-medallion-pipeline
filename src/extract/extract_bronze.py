@@ -5,8 +5,7 @@ import sys
 
 from datetime import datetime, timezone
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import lit
-from pyspark.sql.types import StructType, StructField, StringType, DoubleType, LongType, IntegerType, TimestampType
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 
 
 # Logging
