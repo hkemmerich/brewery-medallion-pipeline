@@ -20,9 +20,9 @@ spark.sparkContext.setLogLevel('WARN')
 
 # Config
 URL = 'https://api.openbrewerydb.org/v1/breweries'
-RUN_TS = sys.argv[1]
+SNAPSHOT_DATE = sys.argv[1]
 BRONZE_BASE_PATH = '/app/data/bronze/open_brewery_db'
-BRONZE_PATH = f'{BRONZE_BASE_PATH}/run_ts={RUN_TS}'
+BRONZE_PATH = f'{BRONZE_BASE_PATH}/snapshot_date={SNAPSHOT_DATE}'
 
 os.makedirs(BRONZE_BASE_PATH, exist_ok=True)
 

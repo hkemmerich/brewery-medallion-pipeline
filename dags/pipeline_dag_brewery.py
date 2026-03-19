@@ -20,7 +20,7 @@ with DAG (
     catchup =  False,
     tags= ['brewery', 'pyspark'],
 ) as dag:
-    extract_bronze = BashOperator(task_id='extract_bronze',bash_command='cd /app && python src/extract/extract_bronze.py "{{ ts_nodash }}"')
-    transform_silver = BashOperator(task_id='transform_silver',bash_command='cd /app && python src/transform/transform_silver.py "{{ ts_nodash }}"')
-    aggregate_gold = BashOperator(task_id='aggregate_gold',bash_command='cd /app && python src/transform/aggregate_gold.py "{{ ts_nodash }}"')
+    extract_bronze = BashOperator(task_id='extract_bronze',bash_command='cd /app && python src/extract/extract_bronze.py "{{ ds }}"')
+    transform_silver = BashOperator(task_id='transform_silver',bash_command='cd /app && python src/transform/transform_silver.py "{{ ds }}"')
+    aggregate_gold = BashOperator(task_id='aggregate_gold',bash_command='cd /app && python src/transform/aggregate_gold.py "{{ ds }}"')
     extract_bronze >> transform_silver >> aggregate_gold

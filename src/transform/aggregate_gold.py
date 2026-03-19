@@ -11,11 +11,11 @@ logging.basicConfig(level=logging.INFO,format='%(asctime)s | %(levelname)s | %(m
 logger = logging.getLogger(__name__)
 
 # Config
-RUN_TS = sys.argv[1]
+SNAPSHOT_DATE = sys.argv[1]
 
-SILVER_PATH = f'/app/data/silver/breweries/run_ts={RUN_TS}'
+SILVER_PATH = f'/app/data/silver/breweries/snapshot_date={SNAPSHOT_DATE}'
 GOLD_BASE_PATH = '/app/data/gold/breweries_by_type_location'
-GOLD_PATH = f'{GOLD_BASE_PATH}/run_ts={RUN_TS}'
+GOLD_PATH = f'{GOLD_BASE_PATH}/snapshot_date={SNAPSHOT_DATE}'
 
 os.makedirs(GOLD_BASE_PATH, exist_ok=True)
 
